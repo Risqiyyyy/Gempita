@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\GoogleAnalyticsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Settings;
@@ -19,12 +18,6 @@ use App\Services\PlausibleService;
 
 class DashboardController extends Controller
 {
-    protected $analyticsService;
-
-    public function __construct(GoogleAnalyticsService $analyticsService)
-    {
-        $this->analyticsService = $analyticsService;
-    }
 
     public function index(Request $request)
     {
