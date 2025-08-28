@@ -5,8 +5,6 @@ namespace UniSharp\LaravelFilemanager\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use UniSharp\LaravelFilemanager\Lfm;
-use App\Helpers\ImageResizeHelper;
-use Illuminate\Support\Facades\Cache;
 
 class UploadController extends LfmController
 {
@@ -30,46 +28,46 @@ class UploadController extends LfmController
         $uploaded_files = request()->file('upload');
         $error_bag = [];
         $new_filename = null;
-        $success_messages = [];    
+
         foreach (is_array($uploaded_files) ? $uploaded_files : [$uploaded_files] as $file) {
-
-            
             try {
-                $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $extension = $file->getClientOriginalExtension();
-                $kodeUnik = now()->format('dmY');
-                $counter = rand(1, 9);
-                $filename = $originalName . ' ' . $kodeUnik . $counter . '.' . $extension;
-                $thumbFilename = $originalName . ' ' . $kodeUnik . $counter . '.' . $extension;
-                $compFilename = $originalName . ' ' . $kodeUnik . $counter . '.' . $extension;
-        
-                $resizeResult = ImageResizeHelper::resizeImage($file, $filename, $thumbFilename, $compFilename);
-        
-                if (isset($resizeResult['error'])) {
-                    array_push($error_bag, 'Some error occurred during uploading.');
-                    continue;
-                }
-        
-                $url = Storage::url($resizeResult['path']);
-                $thumbUrl = Storage::url($resizeResult['thumb_path']);
-                $compUrl = Storage::url($resizeResult['comp_path']);
+                $this->lfm->validateUploadedFile($file);
 
-                $response = [
-                    'url' => $url,
-                    'thumb_url' => $thumbUrl,
-                    'comp_url' => $compUrl, 
-                    'uploaded' => $url
-                ];
+                $new_filename = $this->lfm->upload($file);
             } catch (\Exception $e) {
                 Log::error($e->getMessage(), [
                     'file' => $e->getFile(),
                     'line' => $e->getLine(),
                     'trace' => $e->getTraceAsString()
                 ]);
-                $error_bag[] = $e->getMessage();
+                array_push($error_bag, $e->getMessage());
+            } catch (\Error $e) {
+                Log::error($e->getMessage(), [
+                    'file' => $e->getFile(),
+                    'line' => $e->getLine(),
+                    'trace' => $e->getTraceAsString()
+                ]);
+                array_push($error_bag, 'Some error occured during uploading.');
             }
         }
-        return response()->json($error_bag ? ['error' => $error_bag] : $response);
+
+        if (is_array($uploaded_files)) {
+            $response = count($error_bag) > 0 ? $error_bag : parent::$success_response;
+        } else { // upload via ckeditor5 expects json responses
+            if (is_null($new_filename)) {
+                $response = [
+                    'error' => [ 'message' =>  $error_bag[0] ]
+                ];
+            } else {
+                $url = $this->lfm->setName($new_filename)->url();
+
+                $response = [
+                    'url' => $url,
+                    'uploaded' => $url
+                ];
+            }
+        }
+
+        return response()->json($response);
     }
-    
 }

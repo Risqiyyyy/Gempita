@@ -9,7 +9,6 @@ use UniSharp\LaravelFilemanager\Events\FolderIsDeleting;
 use UniSharp\LaravelFilemanager\Events\FolderWasDeleted;
 use UniSharp\LaravelFilemanager\Events\ImageIsDeleting;
 use UniSharp\LaravelFilemanager\Events\ImageWasDeleted;
-use \App\Models\ImageMetadata;
 
 class DeleteController extends LfmController
 {
@@ -25,6 +24,7 @@ class DeleteController extends LfmController
 
         foreach ($item_names as $name_to_delete) {
             $file = $this->lfm->setName($name_to_delete);
+
             if ($file->isDirectory()) {
                 event(new FolderIsDeleting($file->path('absolute')));
             } else {
@@ -33,8 +33,7 @@ class DeleteController extends LfmController
             }
 
             if (!Storage::disk($this->helper->config('disk'))->exists($file->path('storage'))) {
-                ImageMetadata::where('filename', $name_to_delete)->delete();
-                continue;
+                abort(404);
             }
 
             $file_to_delete = $this->lfm->pretty($name_to_delete);
@@ -65,7 +64,6 @@ class DeleteController extends LfmController
                 }
 
                 $this->lfm->setName($name_to_delete)->delete();
-                ImageMetadata::where('filename', $name_to_delete)->delete();
 
                 event(new FileWasDeleted($file_path));
                 event(new ImageWasDeleted($file_path));

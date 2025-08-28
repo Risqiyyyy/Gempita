@@ -7,12 +7,6 @@ use UniSharp\LaravelFilemanager\Events\FileIsMoving;
 use UniSharp\LaravelFilemanager\Events\FileWasMoving;
 use UniSharp\LaravelFilemanager\Events\FolderIsMoving;
 use UniSharp\LaravelFilemanager\Events\FolderWasMoving;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Http\Request;
-use FilesystemIterator;
-use \App\Models\ImageMetadata;
-use Illuminate\Support\Collection;
-
 
 class ItemsController extends LfmController
 {
@@ -21,80 +15,25 @@ class ItemsController extends LfmController
      *
      * @return mixed
      */
-
-    public function getItems(Request $request)
+    public function getItems()
     {
         $currentPage = self::getCurrentPageFromRequest();
+
         $perPage = $this->helper->getPaginationPerPage();
-        $search = $request->input('search_query');
-        $searchLower = mb_strtolower(trim($search));
+        $items = array_merge($this->lfm->folders(), $this->lfm->files());
 
-        $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
-
-        $query = ImageMetadata::query();
-
-        if (!empty($searchLower)) {
-            $isDateSearch = preg_match('/^\d{1,2}(-\d{1,2})?(-\d{4})?$/', $searchLower) || preg_match('/^\d{4}$/', $searchLower);
-
-            $query->where(function ($q) use ($searchLower, $isDateSearch) {
-                $q->whereRaw("LOWER(REPLACE(REPLACE(filename, '-', ' '), '_', ' ')) LIKE ?", ['%' . $searchLower . '%'])
-                ->orWhereRaw("LOWER(filename) LIKE ?", ['%' . $searchLower . '%']);
-
-                if ($isDateSearch) {
-                    $dateParts = explode('-', $searchLower);
-                    $q->orWhere(function ($sub) use ($dateParts) {
-                        if (count($dateParts) === 3) {
-                            $sub->whereRaw('EXTRACT(DAY FROM created_at) = ?', [$dateParts[0]])
-                                ->whereRaw('EXTRACT(MONTH FROM created_at) = ?', [$dateParts[1]])
-                                ->whereRaw('EXTRACT(YEAR FROM created_at) = ?', [$dateParts[2]]);
-                        } elseif (count($dateParts) === 2) {
-                            $sub->whereRaw('EXTRACT(DAY FROM created_at) = ?', [$dateParts[0]])
-                                ->whereRaw('EXTRACT(MONTH FROM created_at) = ?', [$dateParts[1]]);
-                        } elseif (strlen($dateParts[0]) === 4) {
-                            $sub->whereRaw('EXTRACT(YEAR FROM created_at) = ?', [$dateParts[0]]);
-                        } else {
-                            $sub->whereRaw('EXTRACT(DAY FROM created_at) = ?', [$dateParts[0]]);
-                        }
-                    });
-                }
-            });
-        }
-
-        $totalFound = $query->count();
-
-        $metadataList = $query->select(['filename', 'comp_url', 'thumb_url', 'created_at'])
-                            ->orderByDesc('created_at')
-                            ->forPage($currentPage, $perPage)
-                            ->get();
-
-        $items = $metadataList->map(function ($metadata) use ($imageExtensions) {
-            $extension = strtolower(pathinfo($metadata->filename, PATHINFO_EXTENSION));
-            $isImage = in_array($extension, $imageExtensions);
-            $icon = $isImage ? 'fa-image' : 'fa-file';
-
-            return (object)[
-                'name' => $metadata->filename,
-                'path' => null,
-                'url' => $metadata->comp_url,
-                'time' => strtotime($metadata->created_at),
-                'icon' => $icon,
-                'is_file' => true,
-                'is_image' => $isImage,
-                'thumb_url' => $metadata->thumb_url,
-            ];
-        });
-
-        return response()->json([
-            'items' => $items,
+        return [
+            'items' => array_map(function ($item) {
+                return $item->fill()->attributes;
+            }, array_slice($items, ($currentPage - 1) * $perPage, $perPage)),
             'paginator' => [
                 'current_page' => $currentPage,
-                'total' => $totalFound,
+                'total' => count($items),
                 'per_page' => $perPage,
-                'last_page' => ceil($totalFound / $perPage),
             ],
             'display' => $this->helper->getDisplayMode(),
-            'working_dir' => '/shares',
-        ]);
+            'working_dir' => $this->lfm->path('working_dir'),
+        ];
     }
 
     public function move()
