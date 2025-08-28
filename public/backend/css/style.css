@@ -1,0 +1,33 @@
+:root {
+    --primary-font: "Inter";
+    --primary-color: #53A3DC;
+    --primary-color-rgb: 20, 75, 114;
+    --secondary-color: #6c7a91;
+    --secondary-color-rgb: 108, 122, 145;
+    --heading-color: inherit;
+    --text-color: #182433;
+    --text-color-rgb: 24, 36, 51;
+    --link-color: #53A3DC;
+    --link-color-rgb: 20, 75, 114;
+    --link-hover-color: #53A3DC;
+    --link-hover-color-rgb: 20, 75, 114;
+}
+
+
+.loading-row {
+    text-align: center;
+}
+
+.loading-row .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(83, 163, 220, 1);
+    border-left-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
