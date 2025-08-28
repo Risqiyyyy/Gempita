@@ -1,12 +1,12 @@
 <meta charset="utf-8">
 <title>
-    {{ request()->is('/') ? 'FTNews | Akurat Menyajikan Informasi, Berita Terkini, Kabar Terbaru Indonesia dan Internasional' : ($post->title ?? 'FTNews | Akurat Menyajikan Informasi, Berita Terkini, Kabar Terbaru Indonesia dan Internasional') }}
+    {{ request()->is('/') ? 'Gempita - Gerakan Milenial Pencinta Tanah Air' : ($post->title ?? 'Gempita - Gerakan Milenial Pencinta Tanah Air') }}
 </title>
 <meta name="description" content="
-    {{ request()->is('/') ? 'FTNews - Berita terkini hari ini, nasional, hukum, politik, daerah, metropolitan, lifestyle, kesehatan' : ($post->description ?? 'FTNews - Berita terkini hari ini, nasional, hukum, politik, daerah, metropolitan, lifestyle, kesehatan') }}
+    {{ request()->is('/') ? 'Gempita - Gerakan Milenial Pencinta Tanah Air' : ($post->description ?? 'Gempita - Gerakan Milenial Pencinta Tanah Air') }}
 ">
 <meta name="keywords" content="
-    {{ request()->is('/') ? 'news, updates, FTNews' : ($post->keyword ?? 'news, updates, FTNews') }}
+    {{ request()->is('/') ? 'news, updates, Gempita' : ($post->keyword ?? 'news, updates, Gempita') }}
 ">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,10 +15,10 @@
 
 <!-- Open Graph Meta Tags -->
 <meta property="og:title" content="
-    {{ request()->is('/') ? 'FTNews' : ($post->title ?? 'FTNews') }}
+    {{ request()->is('/') ? 'Gempita' : ($post->title ?? 'Gempita') }}
 ">
 <meta property="og:description" content="
-    {{ request()->is('/') ? 'FTNews - Berita terkini hari ini, nasional, hukum, politik, daerah, metropolitan, lifestyle, kesehatan' : ($post->description ?? 'FTNews - Berita terkini hari ini, nasional, hukum, politik, daerah, metropolitan, lifestyle, kesehatan') }}
+    {{ request()->is('/') ? 'Gempita - Gerakan Milenial Pencinta Tanah Air' : ($post->description ?? 'Gempita - Gerakan Milenial Pencinta Tanah Air') }}
 ">
 <meta property="og:image" content="
     {{
@@ -37,15 +37,15 @@
 ">
 <meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="FTNews">
+<meta property="og:site_name" content="Gempita">
 
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="
-    {{ request()->is('/') ? 'FTNews' : ($post->title ?? 'FTNews') }}
+    {{ request()->is('/') ? 'Gempita' : ($post->title ?? 'Gempita') }}
 ">
 <meta name="twitter:description" content="
-    {{ request()->is('/') ? 'FTNews - Berita terkini hari ini, nasional, hukum, politik, daerah, metropolitan, lifestyle, kesehatan' : ($post->description ?? 'FTNews - Berita terkini hari ini, nasional, hukum, politik, daerah, metropolitan, lifestyle, kesehatan') }}
+    {{ request()->is('/') ? 'Gempita - Gerakan Milenial Pencinta Tanah Air' : ($post->description ?? 'Gempita - Gerakan Milenial Pencinta Tanah Air') }}
 ">
 <meta name="twitter:image" content="
     {{
