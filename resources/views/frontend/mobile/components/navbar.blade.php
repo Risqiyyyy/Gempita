@@ -118,7 +118,7 @@
                     </ul>
                     <ul class="footer-menu">
                         <li class="footer-menu--item">
-                            <a href="/visi-misi">Visi & Misi PT Forum Terkini Media</a>
+                            <a href="/visi-misi">Visi & Misi Gempita Milenial</a>
                         </li>
                         <li class="footer-menu--item">
                             <a href="/site-map">Sitemap</a>

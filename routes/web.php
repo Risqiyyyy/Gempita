@@ -174,7 +174,7 @@ Route::middleware(['auth', 'role:author|admin'])->group(function () {
     Route::group(['prefix' => 'laravel-filemanager'], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });
-    
+
 
     Route::get('/get-caption', function (Request $request) {
         $url = $request->query('url');
@@ -197,12 +197,12 @@ Route::get('/spring', [DashboardController::class, 'loginPage'])->name('login');
 Route::post('/authlogin', [LoginController::class, 'authlogin'])->name('authlogin');
 
 Route::get('/tag/{slug}', [HomeController::class, 'byTag'])->name('bytag');
-Route::get('/redaksi', [HomeController::class, 'redaksi'])->name('redaksi.desktop');
+Route::get('/makna-logo', [HomeController::class, 'redaksi'])->name('redaksi.desktop');
 Route::get('/kebijakan-privasi', [HomeController::class, 'kebijakanPrivasi'])->name('kebijakan.desktop');
-Route::get('/kode-etik', [HomeController::class, 'kodeEtik'])->name('kodeEtik.desktop');
+Route::get('/struktur', [HomeController::class, 'kodeEtik'])->name('kodeEtik.desktop');
 Route::get('/visi-misi', [HomeController::class, 'visiMisi'])->name('visiMisi.desktop');
 Route::get('/site-map', [HomeController::class, 'siteMap'])->name('siteMap.desktop');
-Route::get('/jaringan', [HomeController::class, 'jaringan'])->name('jaringan');
+Route::get('/gallery', [HomeController::class, 'jaringan'])->name('jaringan');
 Route::get('/category/{slug}', [HomeController::class, 'kanal'])->name('kanal.desktop');
 Route::get('/category/{categ}/{subcateg}', [HomeController::class, 'subcateg'])->name('subcateg.desktop');
 Route::get('/indeks', [HomeController::class, 'byIndex'])->name('byIndex.dekstop');

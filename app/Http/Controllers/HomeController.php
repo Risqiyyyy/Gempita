@@ -166,13 +166,13 @@ class HomeController extends Controller
         ->select('posts.*')
         ->take(2)
         ->get();
-    
+
         $firstRelated = $relatedPosts->get(0);
         $secondRelated = $relatedPosts->get(1);
-        
+
         $injectAt3 = '';
         $injectAt6 = '';
-        
+
 
         if ($firstRelated) {
             $injectAt3 = '
@@ -182,7 +182,7 @@ class HomeController extends Controller
             </blockquote>';
 
         }
-        
+
         if ($secondRelated) {
             $injectAt6 = '
             <blockquote class="bacajuga">
@@ -238,7 +238,7 @@ class HomeController extends Controller
 
         $post->increment('view');
         $tagsdetail = $post->tags;
-        
+
         if ($this->agent->isMobile()) {
             return view('frontend.mobile.pages.detail',compact('relatedPosts','injectAt3', 'injectAt6','postTerkiniBottom','post','postTerkini','postTerpopuler','tagsdetail','formatted_content','totalPages', 'currentPage'));
         } else {
@@ -269,9 +269,9 @@ class HomeController extends Controller
         }
 
         if ($this->agent->isMobile()) {
-            return view('frontend.mobile.pages.redaksi',compact('postTerkini','postTerpopuler'));
+            return view('frontend.mobile.pages.makna-logo',compact('postTerkini','postTerpopuler'));
         } else {
-            return view('frontend.dekstop.pages.redaksi',compact('postTerkini','postTerpopuler'));
+            return view('frontend.dekstop.pages.makna-logo',compact('postTerkini','postTerpopuler'));
         }
     }
 
@@ -306,7 +306,7 @@ class HomeController extends Controller
         }
     }
 
-    public function kodeEtik()
+    public function Struktur()
     {
 
         $postTerkini = Post::with('kategori', 'user')
@@ -330,9 +330,9 @@ class HomeController extends Controller
         }
 
         if ($this->agent->isMobile()) {
-            return view('frontend.mobile.pages.kode-etik',compact('postTerkini','postTerpopuler'));
+            return view('frontend.mobile.pages.struktur',compact('postTerkini','postTerpopuler'));
         } else {
-            return view('frontend.dekstop.pages.kode-etik',compact('postTerkini','postTerpopuler'));
+            return view('frontend.dekstop.pages.struktur',compact('postTerkini','postTerpopuler'));
         }
     }
 
@@ -614,7 +614,7 @@ class HomeController extends Controller
             return view('frontend.dekstop.pages.404', compact('postTerkini', 'postTerkiniBottom', 'postTerpopuler'));
         }
     }
-    
+
         public function jaringan(){
         $postTerkini = Post::with('kategori', 'user')
         ->where('status', 'public')
@@ -635,13 +635,13 @@ class HomeController extends Controller
             ->get();
 
         if ($this->agent->isMobile()) {
-            return view('frontend.mobile.pages.jaringan', compact('postTerkini', 'postTerkiniBottom', 'postTerpopuler'));
+            return view('frontend.mobile.pages.gallery', compact('postTerkini', 'postTerkiniBottom', 'postTerpopuler'));
         } else {
-            return view('frontend.dekstop.pages.jaringan', compact('postTerkini', 'postTerkiniBottom', 'postTerpopuler'));
+            return view('frontend.dekstop.pages.gallery', compact('postTerkini', 'postTerkiniBottom', 'postTerpopuler'));
         }
     }
-    
-    
+
+
     public function formatPostContent($content, $injectAt3 = '', $injectAt6 = '', $ads1 = '', $ads2 = '', $ads3 = '')
     {
         $content = preg_replace_callback(

@@ -90,8 +90,7 @@
                 </div>
                 <div class="end-0 bottom-0 position-absolute">
                     <div class="text-white me-5 mb-4">
-                        <h1 class="mb-1">KBN Digital</h1>
-                        <p>Copyright {{ date('Y') }} © KBN Digital</p>
+                        <p>Copyright {{ date('Y') }} © Gempita Milenial</p>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<div id="anchorads">
+{{-- <div id="anchorads">
     <style type="text/css">
         .anchor_banner {
             position: fixed;
@@ -43,4 +43,4 @@
     </div>
 
 
-</div>
+</div> --}}
