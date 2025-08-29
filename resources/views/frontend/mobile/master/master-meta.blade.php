@@ -28,11 +28,11 @@
                     ? (filter_var($post->gambar[0], FILTER_VALIDATE_URL)
                         ? $post->gambar[0]
                         : asset('storage/' . $post->gambar[0]))
-                    : 'https://ftnews.co.id/images/icon-ftnews.png')
+                    : 'https://staging.gempitamilenial.org/frontend/logo/favicon/apple-touch-icon.png')
                 : (filter_var($post->gambar, FILTER_VALIDATE_URL)
                     ? $post->gambar
                     : asset('storage/' . $post->gambar)))
-            : 'https://ftnews.co.id/images/icon-ftnews.png'
+            : 'https://staging.gempitamilenial.org/frontend/logo/favicon/apple-touch-icon.png'
     }}
 ">
 <meta property="og:url" content="{{ url()->current() }}">
@@ -55,11 +55,11 @@
                     ? (filter_var($post->gambar[0], FILTER_VALIDATE_URL)
                         ? $post->gambar[0]
                         : asset('storage/' . $post->gambar[0]))
-                    : 'https://ftnews.co.id/images/icon-ftnews.png')
+                    : 'https://staging.gempitamilenial.org/frontend/logo/favicon/apple-touch-icon.png')
                 : (filter_var($post->gambar, FILTER_VALIDATE_URL)
                     ? $post->gambar
                     : asset('storage/' . $post->gambar)))
-            : 'https://ftnews.co.id/images/icon-ftnews.png'
+            : 'https://staging.gempitamilenial.org/frontend/logo/favicon/apple-touch-icon.png'
     }}
 ">
 

@@ -16,7 +16,7 @@
 <meta property="og:description"
     content="{{ request()->is('/') ? 'Gempita - Gerakan Milenial Pencinta Tanah Air' : $post->description ?? 'Gempita - Gerakan Milenial Pencinta Tanah Air' }}">
 <meta property="og:image"
-    content="{{ !empty($post->gambar) ? asset('storage/comp/' . (is_array($post->gambar) ? basename($post->gambar[0]) : basename($post->gambar))) : 'https://ftnews.co.id/images/icon-ftnews.png' }}">
+    content="{{ !empty($post->gambar) ? asset('storage/comp/' . (is_array($post->gambar) ? basename($post->gambar[0]) : basename($post->gambar))) : 'https://staging.gempitamilenial.org/frontend/logo/favicon/apple-touch-icon.png' }}">
 <meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Gempita">
@@ -27,7 +27,7 @@
 <meta name="twitter:description"
     content="{{ request()->is('/') ? 'Gempita - Gerakan Milenial Pencinta Tanah Air' : $post->description ?? 'Gempita - Gerakan Milenial Pencinta Tanah Air' }}">
 <meta name="twitter:image"
-    content="{{ !empty($post->gambar) ? asset('storage/comp/' . (is_array($post->gambar) ? basename($post->gambar[0]) : basename($post->gambar))) : 'https://ftnews.co.id/images/icon-ftnews.png' }}">
+    content="{{ !empty($post->gambar) ? asset('storage/comp/' . (is_array($post->gambar) ? basename($post->gambar[0]) : basename($post->gambar))) : 'https://staging.gempitamilenial.org/frontend/logo/favicon/apple-touch-icon.png' }}">
 
 <!-- Favicon -->
 <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('frontend/logo/favicon/apple-touch-icon.png') }}">
