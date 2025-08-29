@@ -641,6 +641,13 @@ class HomeController extends Controller
         }
     }
 
+    public function kodeEtik(){
+    if ($this->agent->isMobile()) {
+            return view('frontend.mobile.pages.struktur');
+    } else {
+            return view('frontend.dekstop.pages.struktur');
+        }
+    }
 
     public function formatPostContent($content, $injectAt3 = '', $injectAt6 = '', $ads1 = '', $ads2 = '', $ads3 = '')
     {
