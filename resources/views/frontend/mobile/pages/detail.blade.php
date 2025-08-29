@@ -270,15 +270,6 @@
             </div>
         </div>
     </article>
-
-    <div data-type="_mgwidget" data-widget-id="1799018">
-    </div>
-    <script>
-        (function(w, q) {
-            w[q] = w[q] || [];
-            w[q].push(["_mgc.load"])
-        })(window, "_mgq");
-    </script>
     <!-- terpopuler -->
     <div class="mt-20 bg1">
         <h3 class="base-title pl-20 pt-20">Terpopuler</h3>
