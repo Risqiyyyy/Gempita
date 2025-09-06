@@ -144,7 +144,7 @@
                             <article class="card-two-headline">
                                 <div class="card-two-headline-img-wrap">
                                     <img alt="{{ $post->title }}" class="card-two-headline-img" width="100" height="74"
-                                        src="{{ $post->image }}" />
+                                        src="{{ $post->gambar }}" />
                                 </div>
                                 <div class="card-two-headline--info">
                                     <h4 class="card-two-headline--title">
