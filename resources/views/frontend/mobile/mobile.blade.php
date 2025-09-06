@@ -122,7 +122,7 @@
                         <article class="main-card">
                             <div class="main-card-img-wrap">
                                 <img alt="{{ $post->title }}" class="main-card-img"
-                                    src="{{ $post->title }}" />
+                                    src="{{ $post->image }}" />
                             </div>
                             <div class="main-card--info">
                                 <h4 class="main-card--title">
