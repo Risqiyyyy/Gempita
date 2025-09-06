@@ -122,7 +122,7 @@
                         <article class="main-card">
                             <div class="main-card-img-wrap">
                                 <img alt="{{ $post->title }}" class="main-card-img"
-                                    src="{{ asset('storage/comp/' . basename($post->gambar[0] ?? $post->gambar)) }}" />
+                                    src="{{ $post->title }}" />
                             </div>
                             <div class="main-card--info">
                                 <h4 class="main-card--title">
