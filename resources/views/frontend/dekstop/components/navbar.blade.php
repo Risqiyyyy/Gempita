@@ -11,21 +11,27 @@
                     <div class="main-menu-container">
                         <ul class="main-menu">
                             <li class="menu-item">
-                                <a href="{{ url('/') }}" class="{{ Request::is('/') ? 'active' : '' }}">Home</a>
+                                <a href="{{ url('/') }}" class="{{ Request::is('/') ? 'active' : '' }}">HOME</a>
                             </li>
                             @foreach ($categories as $item)
                                 <li class="menu-item dropdown">
                                     <a href="{{ route('kanal.desktop', ['slug' => $item->slug]) }}"
-                                        class="{{ Request::is('category/' . $item->slug) ? 'active' : '' }}">
-                                        {{ $item->nama_kategori }}
+                                       class="{{ Request::is('category/' . $item->slug) ? 'active' : '' }}">
+                                       
+                                        @if (strtoupper($item->nama_kategori) === 'UPDATES')
+                                            <em>{{ $item->nama_kategori }}</em>
+                                        @elseif (strtoupper($item->nama_kategori) === 'SYNC FAKTA')
+                                            <em>SYNC</em> FAKTA
+                                        @else
+                                            {{ $item->nama_kategori }}
+                                        @endif
                                     </a>
-
+                            
                                     @if ($item->subCategories->count())
                                         <ul class="dropdown-menu">
                                             @foreach ($item->subCategories as $sub)
                                                 <li>
-                                                    <a
-                                                        href="{{ route('subcateg.desktop', ['categ' => $item->slug, 'subcateg' => $sub->slug]) }}">
+                                                    <a href="{{ route('subcateg.desktop', ['categ' => $item->slug, 'subcateg' => $sub->slug]) }}">
                                                         {{ $sub->nama_sub_kategori }}
                                                     </a>
                                                 </li>
@@ -36,11 +42,11 @@
                             @endforeach
 
                             <li class="menu-item">
-                                <a href="https://www.youtube.com/@FTNewscoid" target="_blank">Video</a>
+                                <a href="https://www.youtube.com/@GempitaMilenial" target="_blank">VIDEO</a>
                             </li>
                             <li class="menu-item">
                                 <a href="{{ url('/indeks') }}"
-                                    class="{{ Request::is('indeks') ? 'active' : '' }}">Indeks</a>
+                                    class="{{ Request::is('indeks') ? 'active' : '' }}">INDEKS</a>
                             </li>
                         </ul>
 

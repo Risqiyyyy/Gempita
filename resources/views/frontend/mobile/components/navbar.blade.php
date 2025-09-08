@@ -41,20 +41,26 @@
         <div>
             <ul class="main-menu">
                 <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
-                    <a href="/">Home</a>
+                    <a href="/">HOME</a>
                 </li>
                 @foreach ($categories as $item)
                     <li class="menu-item {{ Request::is('category/' . $item->slug) ? 'active' : '' }}">
                         <a href="{{ route('kanal.desktop', ['slug' => $item->slug]) }}">
-                            {{ $item->nama_kategori }}
+                                        @if (strtoupper($item->nama_kategori) === 'UPDATES')
+                                            <em>{{ $item->nama_kategori }}</em>
+                                        @elseif (strtoupper($item->nama_kategori) === 'SYNC FAKTA')
+                                            <em>SYNC</em> FAKTA
+                                        @else
+                                            {{ $item->nama_kategori }}
+                                        @endif
                         </a>
                     </li>
                 @endforeach
                 <li class="menu-item">
-                    <a href="https://www.youtube.com/@indopopid" target="_blank">Video</a>
+                    <a href="https://www.youtube.com/@GempitaMilenial" target="_blank">VIDEO</a>
                 </li>
                 <li class="menu-item {{ Request::is('indeks') ? 'active' : '' }}">
-                    <a href="/indeks">Indeks</a>
+                    <a href="/indeks">INDEKS</a>
                 </li>
             </ul>
         </div>
@@ -135,20 +141,26 @@
     <nav>
         <ul class="menu scrollable-menu">
             <li class="menu-item-scroll {{ Request::is('/') ? 'active' : '' }}">
-                <a href="/">Home</a>
+                <a href="/">HOME</a>
             </li>
             @foreach ($categories as $item)
                 <li class="menu-item-scroll {{ Request::is('category/' . $item->slug) ? 'active' : '' }}">
                     <a href="{{ route('kanal.desktop', ['slug' => $item->slug]) }}">
-                        {{ $item->nama_kategori }}
+                                        @if (strtoupper($item->nama_kategori) === 'UPDATES')
+                                            <em>{{ $item->nama_kategori }}</em>
+                                        @elseif (strtoupper($item->nama_kategori) === 'SYNC FAKTA')
+                                            <em>SYNC</em> FAKTA
+                                        @else
+                                            {{ $item->nama_kategori }}
+                                        @endif
                     </a>
                 </li>
             @endforeach
             <li class="menu-item-scroll">
-                <a href="https://www.youtube.com/@indopopid" target="_blank">Video</a>
+                <a href="https://www.youtube.com/@GempitaMilenial" target="_blank">VIDEO</a>
             </li>
             <li class="menu-item-scroll {{ Request::is('indeks') ? 'active' : '' }}">
-                <a href="/indeks">Indeks</a>
+                <a href="/indeks">INDEKS</a>
             </li>
         </ul>
     </nav>

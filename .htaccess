@@ -1,0 +1,9 @@
+RewriteEngine on
+
+# Redirect to public directory
+RewriteCond %{HTTP_HOST} ^(www\.)?staging.gempitamilenial.org$ [NC]
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+# Storage
+RewriteRule ^storage/(.*)$ /storage/$1 [L]
