@@ -14,7 +14,7 @@
         <h2 class="d-block d-lg-none navbar-brand navbar-brand-autodark">
             <a href="{{ route('dashboard') }}">
                 <img src="{{ asset('backend/images/logo/logo.png') }}" style="max-height: 32px; height: auto;"
-                    alt="FTnews" class="navbar-brand-image">
+                    alt="Gempita Milenial" class="navbar-brand-image">
             </a>
         </h2>
         <div class="navbar-nav flex-row d-lg-none">

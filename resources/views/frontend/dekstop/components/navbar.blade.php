@@ -3,7 +3,7 @@
         <div class="header-container">
             <div class="logo-wrap">
                 <a href="/">
-                    <img alt="FTNews" width="90" height="30" src="{{ asset('frontend/logo/logo.png') }}" />
+                    <img alt="Gempita Milenial" width="90" height="30" src="{{ asset('frontend/logo/logo.png') }}" />
                 </a>
             </div>
             <div class="fr">
@@ -42,7 +42,7 @@
                             @endforeach
 
                             <li class="menu-item">
-                                <a href="https://www.youtube.com/@GempitaMilenial" target="_blank">VIDEO</a>
+                                <a href="https://www.youtube.com/@GempitaMilenial" target="_blank">Video</a>
                             </li>
                             <li class="menu-item">
                                 <a href="{{ url('/indeks') }}"
