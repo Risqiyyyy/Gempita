@@ -45,7 +45,7 @@
         if (selection.rangeCount > 0) {
             var range = selection.getRangeAt(0);
             var copyText = selection.toString();
-            var source = '\n\nSumber dari FTNews: ' + window.location.href;
+            var source = '\n\nSumber dari Gempita Milenial: ' + window.location.href;
             e.clipboardData.setData('text/plain', copyText + source);
             e.preventDefault();
         }

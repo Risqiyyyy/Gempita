@@ -15,7 +15,7 @@
         <h1 class="navbar-brand navbar-brand-autodark me-4">
             <a href="{{ route('dashboard') }}">
                 <img src="{{ asset('backend/images/logo/logo.png') }}" style="max-height: 32px; height: auto;"
-                    alt="FTnews" class="navbar-brand-image">
+                    alt="Gempita Milenial" class="navbar-brand-image">
             </a>
         </h1>
         <div class="flex-row navbar-nav order-md-last">
